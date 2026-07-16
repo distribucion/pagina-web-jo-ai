@@ -232,9 +232,9 @@ export function createHeroEngine(canvas: HTMLCanvasElement): HeroEngine {
     // KPI labels
     ctx.globalAlpha = uiAlpha;
     const kpis = [
-      ['AD SPEND', '$48.2k'],
-      ['QUALIFIED LEADS', '312'],
-      ['ROI', '3.2x'],
+      ['DÉPENSES PUB', 'CHF 48,2k'],
+      ['LEADS QUALIFIÉS', '312'],
+      ['ROI', '3,2x'],
     ];
     for (let i = 0; i < 3; i++) {
       const k = panels[i];

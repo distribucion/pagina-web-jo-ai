@@ -47,18 +47,19 @@ export default function FinalCTA() {
     <section className="cta" id="cta" ref={sectionRef}>
       <canvas ref={canvasRef} className="cta__canvas" aria-hidden="true" />
       <div className="cta__content">
-        <p className="eyebrow">THE STUDIO STAYS CALM</p>
+        <p className="eyebrow">LE STUDIO RESTE SEREIN</p>
         <h2 className="cta__title">
-          Growth, <span className="accent">automated.</span>
+          La croissance, <span className="accent">automatisée.</span>
         </h2>
         <p className="cta__sub">
-          Your acquisition engine runs while you create. Request access and watch
-          your first qualified pipeline assemble itself this week.
+          Votre moteur d'acquisition tourne pendant que vous créez. Demandez
+          l'accès et regardez votre premier pipeline qualifié s'assembler cette
+          semaine.
         </p>
         <button className="btn btn--primary btn--lg" onClick={() => scrollToSection('#access')}>
-          Request Access
+          Demander l'accès
         </button>
-        <p className="cta__note mono">LIMITED ONBOARDING SLOTS · RESPONSE WITHIN 24H</p>
+        <p className="cta__note mono">PLACES D'ONBOARDING LIMITÉES · RÉPONSE SOUS 24 H</p>
       </div>
     </section>
   );

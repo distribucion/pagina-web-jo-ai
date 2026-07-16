@@ -18,7 +18,7 @@ export default function LogoStrip() {
     ));
   return (
     <section className="logos reveal">
-      <p className="logos__label mono">TRUSTED BY GROWTH-FOCUSED TEAMS</p>
+      <p className="logos__label mono">LA CONFIANCE DES ÉQUIPES ORIENTÉES CROISSANCE</p>
       <div className="logos__mask">
         <div className="logos__track">
           {row('a')}

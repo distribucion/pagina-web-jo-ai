@@ -7,14 +7,14 @@ export default function Footer() {
         <div className="footer__brand">
           <span className="nav__iris" aria-hidden="true" />
           <span>
-            IRIS Growth Engine <span className="footer__by">— a JoProductions system</span>
+            IRIS Growth Engine <span className="footer__by">— un système JoProductions</span>
           </span>
         </div>
         <nav className="footer__links">
           {[
-            ['Platform', '#features'],
-            ['Metrics', '#metrics'],
-            ['Access', '#access'],
+            ['Plateforme', '#features'],
+            ['Métriques', '#metrics'],
+            ['Accès', '#access'],
             ['FAQ', '#faq'],
           ].map(([label, target]) => (
             <a

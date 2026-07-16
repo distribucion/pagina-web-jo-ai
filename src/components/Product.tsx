@@ -33,12 +33,12 @@ export default function Product() {
   return (
     <section className="product" ref={sectionRef}>
       <div className="container">
-        <p className="eyebrow reveal">INSIDE THE COCKPIT</p>
+        <p className="eyebrow reveal">DANS LE COCKPIT</p>
         <h2 className="section-title reveal">
-          One screen. <span className="accent">Total control.</span>
+          Un seul écran. <span className="accent">Un contrôle total.</span>
         </h2>
         <p className="section-sub reveal">
-          The IRIS dashboard — every campaign, every lead, every dollar, live.
+          Le tableau de bord IRIS — chaque campagne, chaque lead, chaque franc, en direct.
         </p>
 
         <div className="product__stage">
@@ -66,15 +66,15 @@ export default function Product() {
               </aside>
               <div className="dash__main">
                 <div className="dash__head">
-                  <span className="dash__title">Acquisition Overview</span>
-                  <span className="dash__range mono">LAST 30 DAYS</span>
+                  <span className="dash__title">Vue d'ensemble acquisition</span>
+                  <span className="dash__range mono">30 DERNIERS JOURS</span>
                 </div>
                 <div className="dash__kpis">
                   {[
-                    ['Ad Spend', '$48,210', '+12%'],
-                    ['Qualified Leads', '312', '+38%'],
-                    ['Cost / Client', '$154', '−21%'],
-                    ['ROI', '3.2x', '+0.4x'],
+                    ['Dépenses pub', "CHF 48'210", '+12%'],
+                    ['Leads qualifiés', '312', '+38%'],
+                    ['Coût / client', 'CHF 154', '−21%'],
+                    ['ROI', '3,2x', '+0,4x'],
                   ].map(([label, value, delta]) => (
                     <div className="dash__kpi" key={label}>
                       <span className="dash__kpi-label mono">{label}</span>
@@ -103,7 +103,7 @@ export default function Product() {
                     />
                     <circle cx="320" cy="8" r="3.5" fill="#F4F4F6" />
                   </svg>
-                  <span className="dash__chart-label mono">REVENUE ATTRIBUTED TO ADS</span>
+                  <span className="dash__chart-label mono">CA ATTRIBUÉ À LA PUBLICITÉ</span>
                 </div>
                 <div className="dash__bottom">
                   <div className="dash__channels">
@@ -123,14 +123,14 @@ export default function Product() {
                   </div>
                   <div className="dash__leads">
                     {[
-                      ['M. Herrera', 'Meta · Form', 94],
-                      ['K. Osei', 'Google · Call', 91],
+                      ['M. Berger', 'Meta · Formulaire', 94],
+                      ['C. Rochat', 'Google · Appel', 91],
                       ['L. Fontaine', 'Meta · WhatsApp', 88],
                     ].map(([name, src, score]) => (
                       <div className="dash__lead" key={name as string}>
                         <span>{name}</span>
                         <span className="mono dash__lead-src">{src}</span>
-                        <span className="badge">{score} · Qualified</span>
+                        <span className="badge">{score} · Qualifié</span>
                       </div>
                     ))}
                   </div>

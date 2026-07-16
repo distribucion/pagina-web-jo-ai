@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { scrollToSection } from '../lib/motion';
 
 const LINKS = [
-  { label: 'Platform', target: '#features' },
-  { label: 'Metrics', target: '#metrics' },
-  { label: 'Access', target: '#access' },
+  { label: 'Plateforme', target: '#features' },
+  { label: 'Métriques', target: '#metrics' },
+  { label: 'Accès', target: '#access' },
   { label: 'FAQ', target: '#faq' },
 ];
 
@@ -30,7 +30,7 @@ export default function Nav() {
       >
         <span className="nav__iris" aria-hidden="true" />
         IRIS
-        <span className="nav__by">by JoProductions</span>
+        <span className="nav__by">par JoProductions</span>
       </a>
       <nav className="nav__links">
         {LINKS.map((l) => (
@@ -47,7 +47,7 @@ export default function Nav() {
         ))}
       </nav>
       <button className="btn btn--primary btn--sm" onClick={() => scrollToSection('#access')}>
-        Request Access
+        Demander l'accès
       </button>
     </header>
   );

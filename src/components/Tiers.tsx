@@ -3,46 +3,46 @@ import { scrollToSection } from '../lib/motion';
 const TIERS = [
   {
     name: 'Launch',
-    price: '$490',
-    period: '/mo',
-    desc: 'For single-channel teams getting serious about attribution.',
+    price: 'CHF 490',
+    period: '/mois',
+    desc: 'Pour les équipes mono-canal qui prennent l’attribution au sérieux.',
     items: [
-      'Up to $10k/mo ad spend',
-      'Precision tracking (pixel + server-side)',
-      'Weekly ROI digest',
-      'Email support',
+      "Jusqu'à CHF 10'000/mois de dépenses pub",
+      'Suivi de précision (pixel + côté serveur)',
+      'Digest ROI hebdomadaire',
+      'Support par e-mail',
     ],
     featured: false,
-    cta: 'Request Access',
+    cta: "Demander l'accès",
   },
   {
     name: 'Scale',
-    price: '$990',
-    period: '/mo',
-    desc: 'The full engine — qualification, routing, and live ROI.',
+    price: 'CHF 990',
+    period: '/mois',
+    desc: 'Le moteur complet — qualification, routage et ROI en direct.',
     items: [
-      'Up to $50k/mo ad spend',
-      'Everything in Launch',
-      'Automated lead qualification',
-      'Real-time ROI dashboards',
-      'Dedicated growth engineer',
+      "Jusqu'à CHF 50'000/mois de dépenses pub",
+      'Tout ce que comprend Launch',
+      'Qualification automatisée des leads',
+      'Tableaux de bord ROI en temps réel',
+      'Ingénieur croissance dédié',
     ],
     featured: true,
-    cta: 'Request Access',
+    cta: "Demander l'accès",
   },
   {
     name: 'Enterprise',
-    price: 'Custom',
+    price: 'Sur mesure',
     period: '',
-    desc: 'Multi-brand operations with custom scoring models.',
+    desc: 'Opérations multi-marques avec modèles de scoring sur mesure.',
     items: [
-      'Unlimited ad spend',
-      'Multi-brand workspaces',
-      'Custom qualification models',
-      'SLA + onsite onboarding',
+      'Dépenses publicitaires illimitées',
+      'Espaces de travail multi-marques',
+      'Modèles de qualification sur mesure',
+      'SLA + onboarding sur site',
     ],
     featured: false,
-    cta: 'Talk to us',
+    cta: 'Parlons-en',
   },
 ];
 
@@ -50,18 +50,18 @@ export default function Tiers() {
   return (
     <section className="tiers" id="access">
       <div className="container">
-        <p className="eyebrow reveal">ACCESS</p>
+        <p className="eyebrow reveal">ACCÈS</p>
         <h2 className="section-title reveal">
-          Access is <span className="accent">limited.</span>
+          L'accès est <span className="accent">limité.</span>
         </h2>
         <p className="section-sub reveal">
-          IRIS onboards a limited number of teams each month to keep every
-          qualification model sharp. Request your slot.
+          IRIS intègre un nombre limité d'équipes chaque mois afin de garder
+          chaque modèle de qualification affûté. Réservez votre place.
         </p>
         <div className="tiers__grid">
           {TIERS.map((t) => (
             <div className={`tier reveal ${t.featured ? 'tier--featured' : ''}`} key={t.name}>
-              {t.featured && <span className="tier__tag mono">MOST REQUESTED</span>}
+              {t.featured && <span className="tier__tag mono">LE PLUS DEMANDÉ</span>}
               <h3 className="tier__name">{t.name}</h3>
               <p className="tier__price">
                 {t.price}

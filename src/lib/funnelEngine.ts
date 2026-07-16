@@ -138,7 +138,7 @@ export function createFunnelEngine(canvas: HTMLCanvasElement): FunnelEngine {
     ctx.fillStyle = `rgba(138,138,150,${0.6 * intensity})`;
     ctx.font = '500 10px "JetBrains Mono", monospace';
     ctx.textAlign = 'center';
-    ctx.fillText('AUTOMATED QUALIFICATION', 0, 0);
+    ctx.fillText('QUALIFICATION AUTOMATISÉE', 0, 0);
     ctx.restore();
     ctx.restore();
   }
@@ -157,7 +157,7 @@ export function createFunnelEngine(canvas: HTMLCanvasElement): FunnelEngine {
     ctx.fillStyle = 'rgba(138,138,150,0.6)';
     ctx.font = '500 10px "JetBrains Mono", monospace';
     ctx.textAlign = 'center';
-    ctx.fillText('VERIFIED LEADS', W * 0.85, H * 0.29);
+    ctx.fillText('LEADS VÉRIFIÉS', W * 0.85, H * 0.29);
 
     // Real-Time ROI sparkline above the grid when feature 3 is active
     if (active === 2) {
@@ -303,7 +303,7 @@ export function createFunnelEngine(canvas: HTMLCanvasElement): FunnelEngine {
           ctx.fillStyle = 'rgba(196,181,253,0.75)';
           ctx.font = '500 9px "JetBrains Mono", monospace';
           ctx.textAlign = 'center';
-          ctx.fillText('+$2.4k', s.x, s.y - 16);
+          ctx.fillText('+CHF 2,4k', s.x, s.y - 16);
         }
         if (n.lockT > 7) {
           slots[n.lockSlot] = null;

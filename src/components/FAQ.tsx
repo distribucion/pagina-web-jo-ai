@@ -2,24 +2,24 @@ import { useState } from 'react';
 
 const ITEMS = [
   {
-    q: 'What exactly is IRIS Growth Engine?',
-    a: 'IRIS is JoProductions’ acquisition platform: a tracking, qualification, and reporting layer that sits on top of your ad accounts and turns advertising spend into a predictable stream of qualified clients.',
+    q: "Qu'est-ce que IRIS Growth Engine, exactement ?",
+    a: "IRIS est la plateforme d'acquisition de JoProductions : une couche de suivi, de qualification et de reporting qui se pose sur vos comptes publicitaires et transforme vos dépenses en un flux prévisible de clients qualifiés.",
   },
   {
-    q: 'Does IRIS replace my ad agency or media buyer?',
-    a: 'No — it makes them accountable. IRIS shows which campaigns, creatives, and audiences actually produce clients, so whoever runs your ads optimizes against revenue instead of vanity metrics.',
+    q: 'IRIS remplace-t-il mon agence ou mon media buyer ?',
+    a: "Non — il les rend redevables. IRIS montre quelles campagnes, créas et audiences produisent réellement des clients, pour que celui qui gère vos publicités optimise le chiffre d'affaires, pas des métriques de vanité.",
   },
   {
-    q: 'Which platforms does it track?',
-    a: 'Meta, Google, and TikTok Ads out of the box, with server-side tracking for iOS-resistant attribution. CRM sync covers HubSpot, Pipedrive, and custom webhooks.',
+    q: 'Quelles plateformes sont suivies ?',
+    a: 'Meta, Google et TikTok Ads en natif, avec un suivi côté serveur résistant à iOS. La synchronisation CRM couvre HubSpot, Pipedrive et les webhooks sur mesure.',
   },
   {
-    q: 'How fast until I see qualified leads?',
-    a: 'Tracking is live within 48 hours of onboarding. Most teams see fully scored, qualified leads flowing into their pipeline within the first week.',
+    q: 'En combien de temps verrai-je des leads qualifiés ?',
+    a: "Le suivi est actif dans les 48 heures suivant l'onboarding. La plupart des équipes voient des leads entièrement évalués et qualifiés arriver dans leur pipeline dès la première semaine.",
   },
   {
-    q: 'Why is access limited?',
-    a: 'Every account gets a calibrated qualification model and a dedicated growth engineer. Limiting onboarding keeps both sharp — request access and we confirm your slot within 24 hours.',
+    q: "Pourquoi l'accès est-il limité ?",
+    a: "Chaque compte reçoit un modèle de qualification calibré et un ingénieur croissance dédié. Limiter l'onboarding garde les deux affûtés — demandez l'accès et nous confirmons votre place sous 24 heures.",
   },
 ];
 
@@ -30,7 +30,7 @@ export default function FAQ() {
     <section className="faq" id="faq">
       <div className="container container--narrow">
         <p className="eyebrow reveal">QUESTIONS</p>
-        <h2 className="section-title reveal">Before you ask.</h2>
+        <h2 className="section-title reveal">Vos questions, anticipées.</h2>
         <div className="faq__list">
           {ITEMS.map((item, i) => {
             const isOpen = open === i;

@@ -5,21 +5,21 @@ import { createFunnelEngine } from '../lib/funnelEngine';
 const FEATURES = [
   {
     n: '01',
-    title: 'Precision Tracking',
-    body: 'Every click, call, and conversion is captured at the source. IRIS stitches your ad platforms, landing pages, and CRM into a single attributed timeline — so you know exactly which dollar produced which client.',
-    chips: ['Pixel + server-side', 'Multi-touch attribution', 'Zero sampling'],
+    title: 'Suivi de précision',
+    body: 'Chaque clic, appel et conversion est capté à la source. IRIS relie vos plateformes publicitaires, vos pages d’atterrissage et votre CRM en une seule chronologie attribuée — vous savez exactement quel franc a produit quel client.',
+    chips: ['Pixel + côté serveur', 'Attribution multi-touch', 'Zéro échantillonnage'],
   },
   {
     n: '02',
-    title: 'Automated Qualification',
-    body: 'Not every lead deserves your team’s time. IRIS scores and filters incoming leads against your ideal-client profile in real time — only verified, high-intent prospects ever reach your pipeline.',
-    chips: ['Intent scoring', 'Instant routing', 'CRM-ready'],
+    title: 'Qualification automatisée',
+    body: 'Tous les leads ne méritent pas le temps de votre équipe. IRIS évalue et filtre les leads entrants selon votre profil de client idéal, en temps réel — seuls les prospects vérifiés, à forte intention, atteignent votre pipeline.',
+    chips: ['Scoring d’intention', 'Routage instantané', 'Prêt pour le CRM'],
   },
   {
     n: '03',
-    title: 'Real-Time ROI',
-    body: 'Watch spend become revenue as it happens. Live dashboards translate campaign performance into the only metric that matters: predictable, compounding client growth.',
-    chips: ['Live dashboards', 'Cohort LTV', 'Forecasting'],
+    title: 'ROI en temps réel',
+    body: 'Regardez vos dépenses devenir du chiffre d’affaires en direct. Des tableaux de bord en temps réel traduisent la performance de vos campagnes dans la seule métrique qui compte : une croissance client prévisible et cumulative.',
+    chips: ['Tableaux de bord live', 'LTV par cohorte', 'Prévisions'],
   },
 ];
 

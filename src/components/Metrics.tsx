@@ -2,9 +2,9 @@ import { useLayoutEffect, useRef } from 'react';
 import { gsap, ScrollTrigger, prefersReduced } from '../lib/motion';
 
 const METRICS = [
-  { final: '100%', label: 'of ad spend tracked', sub: 'Every dollar attributed to its outcome — no dark spend.' },
-  { final: '24/7', label: 'lead qualification', sub: 'The engine scores and routes leads while you sleep.' },
-  { final: '3x', label: 'average ROI', sub: 'Median return across active IRIS accounts.' },
+  { final: '100%', label: 'des dépenses pub suivies', sub: 'Chaque franc attribué à son résultat — aucune dépense opaque.' },
+  { final: '24/7', label: 'qualification des leads', sub: 'Le moteur évalue et route vos leads pendant que vous dormez.' },
+  { final: '3x', label: 'de ROI moyen', sub: 'Retour médian sur l’ensemble des comptes IRIS actifs.' },
 ];
 
 export default function Metrics() {
@@ -50,7 +50,7 @@ export default function Metrics() {
             v: 3,
             duration: 1.8,
             ease: 'power3.out',
-            onUpdate: () => els[2] && (els[2].textContent = `${c.v.toFixed(1)}x`),
+            onUpdate: () => els[2] && (els[2].textContent = `${c.v.toFixed(1).replace('.', ',')}x`),
             onComplete: () => els[2] && (els[2].textContent = '3x'),
           });
         },
@@ -63,7 +63,7 @@ export default function Metrics() {
   return (
     <section className="metrics" id="metrics">
       <div className="container">
-        <p className="eyebrow reveal">THE ENGINE, MEASURED</p>
+        <p className="eyebrow reveal">LE MOTEUR, MESURÉ</p>
         <div className="metrics__grid">
           {METRICS.map((m, i) => (
             <div className="metric reveal" key={m.label}>

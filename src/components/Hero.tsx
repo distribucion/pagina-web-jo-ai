@@ -61,28 +61,29 @@ export default function Hero() {
       <canvas ref={canvasRef} className="hero__canvas" aria-hidden="true" />
       <div className="hero__grain" aria-hidden="true" />
       <div className="hero__copy">
-        <p className="eyebrow">IRIS GROWTH ENGINE — BY JOPRODUCTIONS</p>
+        <p className="eyebrow">IRIS GROWTH ENGINE — PAR JOPRODUCTIONS</p>
         <h1 className="hero__title">
-          Predictable
+          Une croissance
           <br />
-          Client Growth.
+          client prévisible.
         </h1>
         <p className="hero__sub">
-          IRIS turns raw advertising spend into qualified pipeline — tracked at the
-          source, scored automatically, and visualized as revenue in real time.
+          IRIS transforme vos dépenses publicitaires brutes en pipeline qualifié —
+          suivi à la source, évalué automatiquement et visualisé en chiffre
+          d'affaires, en temps réel.
         </p>
         <div className="hero__cta">
           <button className="btn btn--primary" onClick={() => scrollToSection('#access')}>
-            Request Access
+            Demander l'accès
           </button>
           <button className="btn btn--ghost" onClick={() => scrollToSection('#features')}>
-            See the engine
+            Découvrir le moteur
           </button>
         </div>
       </div>
-      <p className="hero__caption mono">RAW TRAFFIC IN · QUALIFIED CLIENTS OUT</p>
+      <p className="hero__caption mono">TRAFIC BRUT EN ENTRÉE · CLIENTS QUALIFIÉS EN SORTIE</p>
       <div className="hero__hint" aria-hidden="true">
-        <span>Scroll to assemble</span>
+        <span>Faites défiler pour assembler</span>
         <span className="hero__hint-line" />
       </div>
     </section>
