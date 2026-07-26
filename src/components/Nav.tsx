@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { scrollToSection } from '../lib/motion';
 
 const LINKS = [
-  { label: 'Plateforme', target: '#features' },
-  { label: 'Métriques', target: '#metrics' },
-  { label: 'Accès', target: '#access' },
+  { label: 'Méthode', target: '#methode' },
+  { label: 'Simulateur', target: '#simulateur' },
+  { label: "L'app", target: '#app' },
   { label: 'FAQ', target: '#faq' },
+  { label: 'Contact', target: '#contact' },
 ];
 
 export default function Nav() {
@@ -46,8 +47,8 @@ export default function Nav() {
           </a>
         ))}
       </nav>
-      <button className="btn btn--primary btn--sm" onClick={() => scrollToSection('#access')}>
-        Demander l'accès
+      <button className="btn btn--primary btn--sm" onClick={() => scrollToSection('#contact')}>
+        Parlons-en
       </button>
     </header>
   );

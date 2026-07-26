@@ -2,24 +2,34 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap, prefersReduced } from '../lib/motion';
 import { createFunnelEngine } from '../lib/funnelEngine';
 
-const FEATURES = [
+const STEPS = [
   {
+    letter: 'I',
     n: '01',
-    title: 'Suivi de précision',
-    body: 'Chaque clic, appel et conversion est capté à la source. IRIS relie vos plateformes publicitaires, vos pages d’atterrissage et votre CRM en une seule chronologie attribuée — vous savez exactement quel franc a produit quel client.',
-    chips: ['Pixel + côté serveur', 'Attribution multi-touch', 'Zéro échantillonnage'],
+    title: 'Identifier',
+    body: 'On définit ton client idéal et on va le chercher exactement là où il se trouve.',
+    chips: ['Ciblage', 'Données', 'Profil client'],
   },
   {
+    letter: 'R',
     n: '02',
-    title: 'Qualification automatisée',
-    body: 'Tous les leads ne méritent pas le temps de votre équipe. IRIS évalue et filtre les leads entrants selon votre profil de client idéal, en temps réel — seuls les prospects vérifiés, à forte intention, atteignent votre pipeline.',
-    chips: ['Scoring d’intention', 'Routage instantané', 'Prêt pour le CRM'],
+    title: 'Rayonner',
+    body: 'On capte son attention avec du contenu et des publicités qui sortent du lot.',
+    chips: ['Contenu', 'Publicité', 'Création'],
   },
   {
+    letter: 'I',
     n: '03',
-    title: 'ROI en temps réel',
-    body: 'Regardez vos dépenses devenir du chiffre d’affaires en direct. Des tableaux de bord en temps réel traduisent la performance de vos campagnes dans la seule métrique qui compte : une croissance client prévisible et cumulative.',
-    chips: ['Tableaux de bord live', 'LTV par cohorte', 'Prévisions'],
+    title: 'Intéresser',
+    body: "On l'engage et on le qualifie automatiquement, jour et nuit, sans rien laisser filer.",
+    chips: ['Automatisations', 'Séquences', 'IA'],
+  },
+  {
+    letter: 'S',
+    n: '04',
+    title: 'Signer',
+    body: "On convertit, on mesure, on optimise — jusqu'au client signé.",
+    chips: ['Conversion', 'Reporting', 'Suivi'],
   },
 ];
 
@@ -43,12 +53,12 @@ export default function Features() {
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: '+=250%',
+          end: '+=300%',
           scrub: 1,
           pin: true,
           anticipatePin: 1,
           onUpdate: (self) => {
-            const idx = Math.min(2, Math.floor(self.progress * 3));
+            const idx = Math.min(3, Math.floor(self.progress * 4));
             if (idx !== activeRef.current) {
               activeRef.current = idx;
               engine.setActive(idx);
@@ -67,14 +77,14 @@ export default function Features() {
         tl.fromTo(
           block,
           { autoAlpha: 0, y: 70, filter: 'blur(10px)' },
-          { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.13, ease: 'power2.out' },
-          i === 0 ? 0.001 : i / 3
+          { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.1, ease: 'power2.out' },
+          i === 0 ? 0.001 : i / 4
         );
-        if (i < 2) {
+        if (i < 3) {
           tl.to(
             block,
-            { autoAlpha: 0, y: -70, filter: 'blur(10px)', duration: 0.1, ease: 'power2.in' },
-            (i + 1) / 3 - 0.1
+            { autoAlpha: 0, y: -70, filter: 'blur(10px)', duration: 0.08, ease: 'power2.in' },
+            (i + 1) / 4 - 0.08
           );
         }
       });
@@ -87,15 +97,24 @@ export default function Features() {
   }, []);
 
   return (
-    <section className="features" id="features" ref={sectionRef}>
+    <section className="features" id="methode" ref={sectionRef}>
       <canvas ref={canvasRef} className="features__canvas" aria-hidden="true" />
       <div className="features__scrim" aria-hidden="true" />
       <div className="features__inner">
+        <div className="features__head">
+          <p className="eyebrow">LA MÉTHODE</p>
+          <p className="features__head-title">
+            I.R.I.S. <span>— ton marché, mis au point.</span>
+          </p>
+        </div>
         <div className="features__blocks">
-          {FEATURES.map((f, i) => (
+          {STEPS.map((f) => (
             <article className="feature-block" key={f.n}>
+              <span className="feature-block__letter" aria-hidden="true">
+                {f.letter}
+              </span>
               <p className="feature-block__index mono">
-                {f.n} <span>/ 03</span>
+                {f.n} <span>/ 04</span>
               </p>
               <h3 className="feature-block__title">{f.title}</h3>
               <p className="feature-block__body">{f.body}</p>
@@ -110,7 +129,7 @@ export default function Features() {
           ))}
         </div>
         <div className="features__dots" aria-hidden="true">
-          {FEATURES.map((f, i) => (
+          {STEPS.map((f, i) => (
             <span key={f.n} className={`features__dot ${i === active ? 'is-active' : ''}`} />
           ))}
         </div>

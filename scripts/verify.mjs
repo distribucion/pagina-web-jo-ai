@@ -1,5 +1,6 @@
-// End-to-end verification: hero scroll-scrub, pinned features, counters,
-// FAQ accordion, and mobile layout. Run with the dev server already up.
+// End-to-end verification of the V2 landing: hero scrub, I.R.I.S. pinned
+// method (4 steps), real-figure counters, ROI simulator interactivity,
+// FAQ accordion, contact form, and mobile layout.
 import { chromium } from 'playwright';
 import { mkdirSync } from 'node:fs';
 
@@ -22,12 +23,6 @@ page.on('pageerror', (e) => consoleErrors.push(String(e)));
 await page.goto(URL, { waitUntil: 'networkidle' });
 await page.waitForTimeout(1500);
 
-// ---- hero scrub ------------------------------------------------------------
-await page.screenshot({ path: 'shots/01-hero-top.png' });
-
-const heroST = await page.evaluate(() => window.__heroST);
-check('hero ScrollTrigger registered', !!heroST, JSON.stringify(heroST));
-
 async function scrollTo(y) {
   await page.evaluate((yy) => {
     if (window.lenis) window.lenis.scrollTo(yy, { immediate: true });
@@ -35,6 +30,11 @@ async function scrollTo(y) {
   }, y);
   await page.waitForTimeout(900);
 }
+
+// ---- hero scrub ------------------------------------------------------------
+await page.screenshot({ path: 'shots/01-hero-top.png' });
+const heroST = await page.evaluate(() => window.__heroST);
+check('hero ScrollTrigger registered', !!heroST, JSON.stringify(heroST));
 
 if (heroST) {
   await scrollTo(heroST.start + (heroST.end - heroST.start) * 0.5);
@@ -48,7 +48,6 @@ if (heroST) {
   await page.waitForTimeout(600);
   await page.screenshot({ path: 'shots/03-hero-end.png' });
 
-  // canvas actually painting something purple-ish
   const painted = await page.evaluate(() => {
     const c = document.querySelector('.hero__canvas');
     const ctx = c.getContext('2d');
@@ -62,115 +61,146 @@ if (heroST) {
   check('hero canvas is painting', painted > 50, `${painted} lit samples`);
 }
 
-// ---- pinned features -------------------------------------------------------
-const featST = await page.evaluate(() => window.__featuresST);
-check('features ScrollTrigger registered', !!featST, JSON.stringify(featST));
-
-if (featST) {
-  const span = featST.end - featST.start;
-  const visibleTitle = async () =>
-    page.evaluate(() => {
-      const blocks = [...document.querySelectorAll('.feature-block')];
-      const vis = blocks.find((b) => getComputedStyle(b).visibility !== 'hidden' && +getComputedStyle(b).opacity > 0.5);
-      return vis?.querySelector('.feature-block__title')?.textContent || null;
-    });
-
-  await scrollTo(featST.start + span * 0.15);
-  const f0 = await page.evaluate(() => window.__featureIdx);
-  const t0 = await visibleTitle();
-  await page.screenshot({ path: 'shots/04-feature-1.png' });
-
-  await scrollTo(featST.start + span * 0.5);
-  const f1 = await page.evaluate(() => window.__featureIdx);
-  const t1 = await visibleTitle();
-  await page.screenshot({ path: 'shots/05-feature-2.png' });
-
-  await scrollTo(featST.start + span * 0.85);
-  const f2 = await page.evaluate(() => window.__featureIdx);
-  const t2 = await visibleTitle();
-  await page.screenshot({ path: 'shots/06-feature-3.png' });
-
-  check('features pin cycles blocks 0→1→2', f0 === 0 && f1 === 1 && f2 === 2, `${t0} / ${t1} / ${t2}`);
-}
-
-// ---- metrics counters --------------------------------------------------------
+// ---- metrics (real figures) ------------------------------------------------
 await page.evaluate(() => {
   const el = document.querySelector('#metrics');
-  window.lenis
-    ? window.lenis.scrollTo(el, { immediate: true, offset: -100 })
-    : el.scrollIntoView();
+  window.lenis ? window.lenis.scrollTo(el, { immediate: true, offset: -100 }) : el.scrollIntoView();
 });
-await page.waitForTimeout(2600);
+await page.waitForTimeout(2800);
 const metricTexts = await page.evaluate(() =>
   [...document.querySelectorAll('.metric__value')].map((e) => e.textContent)
 );
 check(
-  'metrics counters reach final values',
-  metricTexts[0] === '100%' && metricTexts[1] === '24/7' && metricTexts[2] === '3x',
+  'metrics counters reach real final values',
+  metricTexts[0] === "14'202+" &&
+    metricTexts[1] === '4,8x' &&
+    metricTexts[2] === '38' &&
+    metricTexts[3] === '100%',
   metricTexts.join(' · ')
 );
-await page.screenshot({ path: 'shots/07-metrics.png' });
+await page.screenshot({ path: 'shots/04-metrics.png' });
 
-// ---- product + tiers ---------------------------------------------------------
+// ---- I.R.I.S. pinned method (4 steps) -------------------------------------
+const featST = await page.evaluate(() => window.__featuresST);
+check('méthode ScrollTrigger registered', !!featST, JSON.stringify(featST));
+
+if (featST) {
+  const span = featST.end - featST.start;
+  const idxAt = async (f) => {
+    await scrollTo(featST.start + span * f);
+    return page.evaluate(() => window.__featureIdx);
+  };
+  const i0 = await idxAt(0.1);
+  await page.screenshot({ path: 'shots/05-methode-I.png' });
+  const i1 = await idxAt(0.35);
+  const i2 = await idxAt(0.6);
+  await page.screenshot({ path: 'shots/06-methode-3.png' });
+  const i3 = await idxAt(0.9);
+  await page.screenshot({ path: 'shots/07-methode-S.png' });
+  check('méthode I.R.I.S. cycles 0→1→2→3', i0 === 0 && i1 === 1 && i2 === 2 && i3 === 3, `${i0}/${i1}/${i2}/${i3}`);
+}
+
+// ---- pillars ---------------------------------------------------------------
 await page.evaluate(() => {
-  const el = document.querySelector('.product');
+  const el = document.querySelector('#piliers');
+  window.lenis ? window.lenis.scrollTo(el, { immediate: true, offset: -60 }) : el.scrollIntoView();
+});
+await page.waitForTimeout(900);
+const pillarCount = await page.locator('.pillar').count();
+check('3 pillars render', pillarCount === 3, `${pillarCount} pillars`);
+await page.screenshot({ path: 'shots/08-pillars.png' });
+
+// ---- simulator -------------------------------------------------------------
+await page.evaluate(() => {
+  const el = document.querySelector('#simulateur');
+  window.lenis ? window.lenis.scrollTo(el, { immediate: true, offset: -40 }) : el.scrollIntoView();
+});
+await page.waitForTimeout(1400);
+const roiDefault = await page.evaluate(() => window.__simRoi);
+check('simulator default matches original calibration (+140%)', roiDefault === 140, `roi=${roiDefault}`);
+
+// move the budget slider → ROI must change
+await page.evaluate(() => {
+  const input = document.querySelector('#sim-budget');
+  const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+  setter.call(input, 10000);
+  input.dispatchEvent(new Event('input', { bubbles: true }));
+});
+await page.waitForTimeout(1200);
+const roiAfter = await page.evaluate(() => window.__simRoi);
+check('simulator reacts to budget change', roiAfter !== 140 && typeof roiAfter === 'number', `roi=${roiAfter}`);
+
+// switch sector → ROI changes again
+await page.locator('.sim__sector', { hasText: 'E-commerce' }).click();
+await page.waitForTimeout(1200);
+const roiSector = await page.evaluate(() => window.__simRoi);
+check('simulator reacts to sector change', typeof roiSector === 'number' && roiSector !== roiAfter, `roi=${roiSector}`);
+await page.screenshot({ path: 'shots/09-simulator.png' });
+
+// ---- app section -----------------------------------------------------------
+await page.evaluate(() => {
+  const el = document.querySelector('#app');
   window.lenis ? window.lenis.scrollTo(el, { immediate: true }) : el.scrollIntoView();
 });
 await page.waitForTimeout(900);
-await page.screenshot({ path: 'shots/08-product.png' });
+const appFeatures = await page.locator('.app-feature').count();
+check('app section shows 6 features', appFeatures === 6, `${appFeatures} features`);
+await page.screenshot({ path: 'shots/10-app.png' });
 
-await page.evaluate(() => {
-  const el = document.querySelector('#access');
-  window.lenis ? window.lenis.scrollTo(el, { immediate: true }) : el.scrollIntoView();
-});
-await page.waitForTimeout(900);
-await page.screenshot({ path: 'shots/09-tiers.png' });
-
-// ---- FAQ accordion -----------------------------------------------------------
+// ---- FAQ -------------------------------------------------------------------
 await page.evaluate(() => {
   const el = document.querySelector('#faq');
   window.lenis ? window.lenis.scrollTo(el, { immediate: true, offset: -60 }) : el.scrollIntoView();
 });
 await page.waitForTimeout(900);
-const q2 = page.locator('.faq__q').nth(1);
-await q2.click();
+const faqCount = await page.locator('.faq__item').count();
+await page.locator('.faq__q').nth(1).click();
 await page.waitForTimeout(600);
-const openCount = await page.locator('.faq__item.is-open').count();
 const answerVisible = await page.evaluate(() => {
   const item = document.querySelectorAll('.faq__item')[1];
   return item.classList.contains('is-open') && item.querySelector('.faq__a').offsetHeight > 20;
 });
-check('FAQ accordion opens on click', openCount === 1 && answerVisible, `open items: ${openCount}`);
-await page.screenshot({ path: 'shots/10-faq.png' });
+check('FAQ has 6 real questions and opens on click', faqCount === 6 && answerVisible, `${faqCount} items`);
+await page.screenshot({ path: 'shots/11-faq.png' });
 
-// ---- final CTA -----------------------------------------------------------------
+// ---- contact ---------------------------------------------------------------
 await page.evaluate(() => {
-  const el = document.querySelector('#cta');
+  const el = document.querySelector('#contact');
   window.lenis ? window.lenis.scrollTo(el, { immediate: true }) : el.scrollIntoView();
 });
-await page.waitForTimeout(1200);
-await page.screenshot({ path: 'shots/11-cta.png' });
+await page.waitForTimeout(1300);
+const formOk = await page.evaluate(() => {
+  const form = document.querySelector('.contact__form');
+  return (
+    !!form &&
+    form.querySelectorAll('input').length === 3 &&
+    form.querySelectorAll('textarea').length === 1 &&
+    !!document.querySelector('.contact__coords')
+  );
+});
+check('contact form + real coordinates render', formOk);
+await page.screenshot({ path: 'shots/12-contact.png' });
 
-// ---- console errors ------------------------------------------------------------
+// ---- console errors --------------------------------------------------------
 check('no console errors', consoleErrors.length === 0, consoleErrors.slice(0, 3).join(' | '));
 
-// ---- mobile pass -----------------------------------------------------------------
+// ---- mobile pass -----------------------------------------------------------
 const mob = await browser.newPage({ viewport: { width: 390, height: 844 } });
 const mobErrors = [];
 mob.on('pageerror', (e) => mobErrors.push(String(e)));
 await mob.goto(URL, { waitUntil: 'networkidle' });
 await mob.waitForTimeout(1200);
-await mob.screenshot({ path: 'shots/12-mobile-hero.png' });
+await mob.screenshot({ path: 'shots/13-mobile-hero.png' });
 const hScrollOK = await mob.evaluate(
   () => document.documentElement.scrollWidth <= window.innerWidth + 1
 );
 check('mobile: no horizontal overflow', hScrollOK);
 await mob.evaluate(() => {
-  const el = document.querySelector('#metrics');
+  const el = document.querySelector('#simulateur');
   window.lenis ? window.lenis.scrollTo(el, { immediate: true }) : el.scrollIntoView();
 });
-await mob.waitForTimeout(2400);
-await mob.screenshot({ path: 'shots/13-mobile-metrics.png' });
+await mob.waitForTimeout(1400);
+await mob.screenshot({ path: 'shots/14-mobile-simulator.png' });
 check('mobile: no page errors', mobErrors.length === 0, mobErrors.slice(0, 2).join(' | '));
 
 await browser.close();

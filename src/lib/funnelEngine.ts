@@ -36,7 +36,9 @@ export function createFunnelEngine(canvas: HTMLCanvasElement): FunnelEngine {
   let t = 0;
   let last = performance.now();
   let visible = true;
-  let active = 0; // which feature block is active (0/1/2)
+  // Active I.R.I.S. step: 0 Identifier (trails), 1 Rayonner (glow boost),
+  // 2 Intéresser (gate intense), 3 Signer (locked leads + values)
+  let active = 0;
   let destroyed = false;
   const GATE_X = 0.60;
   const SLOTS = 9;
@@ -105,7 +107,7 @@ export function createFunnelEngine(canvas: HTMLCanvasElement): FunnelEngine {
     const gx = W * GATE_X;
     const gh = H * 0.62;
     const gy = H * 0.5 - gh / 2;
-    const intensity = active === 1 ? 1 : 0.55;
+    const intensity = active === 2 ? 1 : 0.55;
 
     ctx.save();
     ctx.globalCompositeOperation = 'source-over';
@@ -159,8 +161,8 @@ export function createFunnelEngine(canvas: HTMLCanvasElement): FunnelEngine {
     ctx.textAlign = 'center';
     ctx.fillText('LEADS VÉRIFIÉS', W * 0.85, H * 0.29);
 
-    // Real-Time ROI sparkline above the grid when feature 3 is active
-    if (active === 2) {
+    // sparkline above the lock grid during the "Signer" step
+    if (active === 3) {
       ctx.globalCompositeOperation = 'lighter';
       ctx.strokeStyle = 'rgba(167,139,250,0.8)';
       ctx.shadowColor = '#8B5CF6';
@@ -233,10 +235,12 @@ export function createFunnelEngine(canvas: HTMLCanvasElement): FunnelEngine {
           ctx.stroke();
         }
 
-        glow(px, py, n.r * 3.4 * n.depth, '139,92,246', 0.5 * n.depth);
+        // "Rayonner" boosts every node's radiance
+        const boost = active === 1 ? 1.5 : 1;
+        glow(px, py, n.r * 3.4 * n.depth * boost, '139,92,246', Math.min(0.85, 0.5 * n.depth * boost));
         ctx.fillStyle = `rgba(196,181,253,${0.85 * n.depth})`;
         ctx.beginPath();
-        ctx.arc(px, py, n.r * 0.55 * n.depth, 0, TAU);
+        ctx.arc(px, py, n.r * 0.55 * n.depth * boost, 0, TAU);
         ctx.fill();
 
         // gate crossing → qualify or reject
@@ -299,7 +303,7 @@ export function createFunnelEngine(canvas: HTMLCanvasElement): FunnelEngine {
         ctx.beginPath();
         ctx.arc(s.x, s.y, 3, 0, TAU);
         ctx.fill();
-        if (active === 2) {
+        if (active === 3) {
           ctx.fillStyle = 'rgba(196,181,253,0.75)';
           ctx.font = '500 9px "JetBrains Mono", monospace';
           ctx.textAlign = 'center';
@@ -322,7 +326,7 @@ export function createFunnelEngine(canvas: HTMLCanvasElement): FunnelEngine {
 
   return {
     setActive(i: number) {
-      active = Math.min(2, Math.max(0, i));
+      active = Math.min(3, Math.max(0, i));
     },
     setVisible(v: boolean) {
       visible = v;

@@ -68,16 +68,16 @@ export default function Hero() {
           client prévisible.
         </h1>
         <p className="hero__sub">
-          IRIS transforme vos dépenses publicitaires brutes en pipeline qualifié —
+          IRIS transforme tes dépenses publicitaires brutes en pipeline qualifié —
           suivi à la source, évalué automatiquement et visualisé en chiffre
           d'affaires, en temps réel.
         </p>
         <div className="hero__cta">
-          <button className="btn btn--primary" onClick={() => scrollToSection('#access')}>
-            Demander l'accès
+          <button className="btn btn--primary" onClick={() => scrollToSection('#simulateur')}>
+            Simule ton ROI
           </button>
-          <button className="btn btn--ghost" onClick={() => scrollToSection('#features')}>
-            Découvrir le moteur
+          <button className="btn btn--ghost" onClick={() => scrollToSection('#methode')}>
+            Découvrir la méthode
           </button>
         </div>
       </div>

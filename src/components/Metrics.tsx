@@ -1,10 +1,13 @@
 import { useLayoutEffect, useRef } from 'react';
 import { gsap, ScrollTrigger, prefersReduced } from '../lib/motion';
 
+const chf = (n: number) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+
 const METRICS = [
-  { final: '100%', label: 'des dépenses pub suivies', sub: 'Chaque franc attribué à son résultat — aucune dépense opaque.' },
-  { final: '24/7', label: 'qualification des leads', sub: 'Le moteur évalue et route vos leads pendant que vous dormez.' },
-  { final: '3x', label: 'de ROI moyen', sub: 'Retour médian sur l’ensemble des comptes IRIS actifs.' },
+  { final: "14'202+", label: 'leads gérés', sub: 'Captés, suivis et qualifiés par le système IRIS.' },
+  { final: '4,8x', label: 'ROI moyen', sub: 'Retour moyen constaté sur les comptes actifs.' },
+  { final: '38', label: 'clients actifs', sub: 'Des entreprises de Suisse romande qui grandissent avec IRIS.' },
+  { final: '100%', label: 'systèmes actifs 24/7', sub: 'Tes automatisations ne dorment jamais.' },
 ];
 
 export default function Metrics() {
@@ -26,32 +29,35 @@ export default function Metrics() {
         start: 'top 72%',
         once: true,
         onEnter: () => {
-          // 100%
           const a = { v: 0 };
           gsap.to(a, {
-            v: 100,
-            duration: 1.8,
+            v: 14202,
+            duration: 2.2,
             ease: 'power3.out',
-            onUpdate: () => els[0] && (els[0].textContent = `${Math.round(a.v)}%`),
+            onUpdate: () => els[0] && (els[0].textContent = `${chf(a.v)}+`),
+            onComplete: () => els[0] && (els[0].textContent = "14'202+"),
           });
-          // 24/7
-          const b = { x: 0, y: 0 };
+          const b = { v: 0 };
           gsap.to(b, {
-            x: 24,
-            y: 7,
-            duration: 1.8,
+            v: 4.8,
+            duration: 2,
             ease: 'power3.out',
-            onUpdate: () =>
-              els[1] && (els[1].textContent = `${Math.round(b.x)}/${Math.round(b.y)}`),
+            onUpdate: () => els[1] && (els[1].textContent = `${b.v.toFixed(1).replace('.', ',')}x`),
+            onComplete: () => els[1] && (els[1].textContent = '4,8x'),
           });
-          // 3x
           const c = { v: 0 };
           gsap.to(c, {
-            v: 3,
+            v: 38,
             duration: 1.8,
             ease: 'power3.out',
-            onUpdate: () => els[2] && (els[2].textContent = `${c.v.toFixed(1).replace('.', ',')}x`),
-            onComplete: () => els[2] && (els[2].textContent = '3x'),
+            onUpdate: () => els[2] && (els[2].textContent = `${Math.round(c.v)}`),
+          });
+          const d = { v: 0 };
+          gsap.to(d, {
+            v: 100,
+            duration: 2,
+            ease: 'power3.out',
+            onUpdate: () => els[3] && (els[3].textContent = `${Math.round(d.v)}%`),
           });
         },
       });
@@ -63,8 +69,8 @@ export default function Metrics() {
   return (
     <section className="metrics" id="metrics">
       <div className="container">
-        <p className="eyebrow reveal">LE MOTEUR, MESURÉ</p>
-        <div className="metrics__grid">
+        <p className="eyebrow reveal">DES CHIFFRES, PAS DES PROMESSES</p>
+        <div className="metrics__grid metrics__grid--4">
           {METRICS.map((m, i) => (
             <div className="metric reveal" key={m.label}>
               <span

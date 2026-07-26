@@ -2,24 +2,28 @@ import { useState } from 'react';
 
 const ITEMS = [
   {
-    q: "Qu'est-ce que IRIS Growth Engine, exactement ?",
-    a: "IRIS est la plateforme d'acquisition de JoProductions : une couche de suivi, de qualification et de reporting qui se pose sur vos comptes publicitaires et transforme vos dépenses en un flux prévisible de clients qualifiés.",
+    q: 'Combien de temps avant de voir des résultats ?',
+    a: "La plupart des clients voient les premiers leads qualifiés dans les 7 à 14 jours suivant le lancement des campagnes. Le système IRIS s'optimise ensuite en continu — les meilleurs résultats arrivent généralement entre la 4e et la 8e semaine.",
   },
   {
-    q: 'IRIS remplace-t-il mon agence ou mon media buyer ?',
-    a: "Non — il les rend redevables. IRIS montre quelles campagnes, créas et audiences produisent réellement des clients, pour que celui qui gère vos publicités optimise le chiffre d'affaires, pas des métriques de vanité.",
+    q: "Est-ce que ça marche pour mon secteur d'activité ?",
+    a: "IRIS s'adapte à ton industrie grâce à des benchmarks spécifiques (taux de conversion, valeur moyenne du client). Utilise le simulateur ROI pour voir une estimation basée sur ton secteur.",
   },
   {
-    q: 'Quelles plateformes sont suivies ?',
-    a: 'Meta, Google et TikTok Ads en natif, avec un suivi côté serveur résistant à iOS. La synchronisation CRM couvre HubSpot, Pipedrive et les webhooks sur mesure.',
+    q: 'Quel budget publicitaire minimum est nécessaire ?',
+    a: 'Nous recommandons un budget minimum de CHF 500-800/mois en publicité pour générer un volume de données suffisant. Le système est conçu pour scaler efficacement à mesure que le budget augmente.',
   },
   {
-    q: 'En combien de temps verrai-je des leads qualifiés ?',
-    a: "Le suivi est actif dans les 48 heures suivant l'onboarding. La plupart des équipes voient des leads entièrement évalués et qualifiés arriver dans leur pipeline dès la première semaine.",
+    q: 'Dois-je gérer les publicités moi-même ?',
+    a: 'Non. Notre équipe prend en charge la création, le lancement et l’optimisation quotidienne de tes campagnes Meta Ads et Google Ads. Tu reçois des rapports clairs sans avoir à gérer la technique.',
   },
   {
-    q: "Pourquoi l'accès est-il limité ?",
-    a: "Chaque compte reçoit un modèle de qualification calibré et un ingénieur croissance dédié. Limiter l'onboarding garde les deux affûtés — demandez l'accès et nous confirmons votre place sous 24 heures.",
+    q: "Qu'est-ce qui différencie IRIS d'une agence marketing classique ?",
+    a: "IRIS n'est pas une prestation de contenu — c'est un système complet d'acquisition avec suivi data, automatisations et publicité payante ciblée. On ne facture pas des posts, on construit une machine à clients mesurable.",
+  },
+  {
+    q: 'Puis-je annuler à tout moment ?',
+    a: "Oui, il n'y a aucun engagement à long terme forcé. On te demande simplement un cycle minimum de 30 jours pour que le système ait le temps de générer des données exploitables.",
   },
 ];
 
@@ -30,7 +34,7 @@ export default function FAQ() {
     <section className="faq" id="faq">
       <div className="container container--narrow">
         <p className="eyebrow reveal">QUESTIONS</p>
-        <h2 className="section-title reveal">Vos questions, anticipées.</h2>
+        <h2 className="section-title reveal">Des questions ? On répond.</h2>
         <div className="faq__list">
           {ITEMS.map((item, i) => {
             const isOpen = open === i;

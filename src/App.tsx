@@ -2,13 +2,15 @@ import { useLayoutEffect } from 'react';
 import { gsap, ScrollTrigger, initSmoothScroll, prefersReduced } from './lib/motion';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
-import LogoStrip from './components/LogoStrip';
-import Features from './components/Features';
 import Metrics from './components/Metrics';
+import Features from './components/Features';
+import Pillars from './components/Pillars';
+import RoiExplainer from './components/RoiExplainer';
+import Simulator from './components/Simulator';
 import Product from './components/Product';
-import Tiers from './components/Tiers';
+import AdsCompare from './components/AdsCompare';
 import FAQ from './components/FAQ';
-import FinalCTA from './components/FinalCTA';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -53,13 +55,15 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <LogoStrip />
-        <Features />
         <Metrics />
+        <Features />
+        <Pillars />
+        <RoiExplainer />
+        <Simulator />
         <Product />
-        <Tiers />
+        <AdsCompare />
         <FAQ />
-        <FinalCTA />
+        <Contact />
       </main>
       <Footer />
     </>

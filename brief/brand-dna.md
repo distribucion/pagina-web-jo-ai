@@ -1,6 +1,14 @@
 # BRAND DNA — IRIS Growth Engine
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+> **Revisión V2 (25.07.2026)** — decisiones aprobadas tras el análisis de la
+> web original (`ANALISIS-WEB-ORIGINAL.md`) y el plan (`PLAN-V2.md`):
+> idioma **francés de Suiza con tuteo** · paleta **100% púrpura** (sin verde)
+> · **sin tabla de precios** (conversión = simulador ROI → contacto, "premier
+> appel gratuit") · contenido de negocio REAL (método I.R.I.S., cifras
+> 14'202+/4.8x/38, FAQ, contacto info@jo-productions.ch) — nunca inventado.
+> Arquitectura de página V2: ver PLAN-V2.md §Arquitectura.
+
 ## 🎯 PROPÓSITO
 IRIS Growth Engine es la plataforma de adquisición avanzada de **JoProductions**:
 convierte inversión publicitaria en crecimiento predecible de clientes mediante

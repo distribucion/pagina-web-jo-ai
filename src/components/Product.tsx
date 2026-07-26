@@ -31,14 +31,16 @@ export default function Product() {
   }, []);
 
   return (
-    <section className="product" ref={sectionRef}>
+    <section className="product" id="app" ref={sectionRef}>
       <div className="container">
-        <p className="eyebrow reveal">DANS LE COCKPIT</p>
+        <p className="eyebrow reveal">TON SUIVI, AU QUOTIDIEN</p>
         <h2 className="section-title reveal">
-          Un seul écran. <span className="accent">Un contrôle total.</span>
+          Une app pour voir <span className="accent">où va ton argent.</span>
         </h2>
         <p className="section-sub reveal">
-          Le tableau de bord IRIS — chaque campagne, chaque lead, chaque franc, en direct.
+          Fini les rapports opaques et les zones d'ombre. Ton app IRIS te donne
+          une visibilité quotidienne sur chaque franc investi et chaque client
+          acquis.
         </p>
 
         <div className="product__stage">
@@ -138,6 +140,23 @@ export default function Product() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="app-features">
+          {[
+            ['Suivi du budget en temps réel', 'Vois exactement où va chaque franc investi — publicité, contenu, automatisation — mis à jour chaque jour.'],
+            ['Tableau de bord des performances', 'Leads, conversions, coût par lead, ROI : toutes tes données clés réunies en un seul endroit, claires et lisibles.'],
+            ['Transparence totale du système', "Comprends comment chaque étape d'IRIS contribue à l'acquisition de tes clients, du ciblage jusqu'à la signature."],
+            ['Notifications & alertes', "Sois prévenu en temps réel quand un lead se qualifie, une campagne décolle ou un objectif est atteint."],
+            ['Évolution jour par jour', 'Compare tes résultats sur la semaine, le mois, le trimestre et vois ta croissance se construire sous tes yeux.'],
+            ['Accessible partout', "Ton suivi client dans ta poche, 24/7 — plus besoin d'attendre un rapport mensuel pour savoir où tu en es."],
+          ].map(([t, b]) => (
+            <div className="app-feature reveal" key={t}>
+              <span className="app-feature__dot" aria-hidden="true" />
+              <h3>{t}</h3>
+              <p>{b}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
